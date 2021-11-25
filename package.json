@@ -5,6 +5,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
+    "start": "nodemon app.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "commit": "git-cz"
   },
@@ -22,5 +23,12 @@
     "commitizen": "^4.2.4",
     "husky": "^7.0.4",
     "inquirer": "^8.2.0"
+  },
+  "dependencies": {
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "lodash": "^4.17.21",
+    "mongoose": "^6.0.13",
+    "nodemon": "^2.0.15"
   }
 }
