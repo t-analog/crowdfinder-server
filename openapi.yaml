@@ -27,6 +27,21 @@ components:
           items:
             type: string
         activity_location:
+          type: object
+          properties:
+            latitude:
+              type: number
+            longitude:
+              type: number
+
+    User:
+      type: object
+      properties:
+        user_name:
+          type: string
+        user_password:
+          type: string
+        user_email:
           type: string
 
   parameters:
@@ -65,16 +80,6 @@ paths:
       description: Returns a list of activities
       # query parameters
       parameters:
-        # - name: limit
-        #   in: query
-        #   description: Limits the number of activities returned
-        #   schema:
-        #     type: integer
-        # - name: offset
-        #   in: query
-        #   description: Specifies the page number of the activities to be displayed
-        #   schema:
-        #     type: integer
         - $ref: '#/components/parameters/PageLimit'
         - $ref: '#/components/parameters/PageOffset'
 
@@ -87,57 +92,20 @@ paths:
               schema:
                 type: array
                 items:
-                  # type: object
-                  # required:
-                  #   - activity_name
-                  #   - activity_location
-                  # properties:
-                  #   activity_name:
-                  #     type: string
-                  #   activity_description:
-                  #     type: string
-                  #   activity_category:
-                  #     type: array
-                  #     items:
-                  #       type: string
-                  #   activity_location:
-                  #     type: string
                   $ref: '#/components/schemas/Activity'
 
         '400':
-          # description: Invalid request
-          # content:
-          #   application/json:
-          #     schema:
-          #       type: object
-          #       properties:
-          #         message:
-          #           type: string
           $ref: '#/components/responses/400Error'
 
     # request body
     post:
-      description: Enable user create a new activity
+      description: Enables user create a new activity
       requestBody:
+        description: Contains the new activity data sent by user
         required: true
         content:
           application/json:
             schema:
-              # type: object
-              # required:
-              #   - activity_name
-              #   - activity_location
-              # properties:
-              #   activity_name:
-              #     type: string
-              #   activity_description:
-              #     type: string
-              #   activity_category:
-              #     type: array
-              #     items:
-              #       type: string
-              #   activity_location:
-              #     type: string
               $ref: '#/components/schemas/Activity'
 
       responses:
@@ -145,21 +113,13 @@ paths:
           description: Successfully created new activity
 
         '400':
-          # description: Invalid request
-          # content:
-          #   application/json:
-          #     schema:
-          #       type: object
-          #       properties:
-          #         message:
-          #           type: string
           $ref: '#/components/responses/400Error'
 
-  /activites/{foo}:
+  /activites/{id}:
     get:
-      description: Get information of an activity from its foo
+      description: Get information of an activity from its MongoDB object id
       parameters:
-        - name: foo
+        - name: id
           in: path
           required: true
           schema:
@@ -171,28 +131,9 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  activity_name:
-                    type: string
-                  activity_description:
-                    type: string
-                  activity_category:
-                    type: array
-                    items:
-                      type: string
-                  activity_location:
-                    type: string
+                $ref: '#/components/schemas/Activity'
 
         '400':
-          description: Invalid request
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  message:
-                    type: string
+          $ref: '#/components/responses/400Error'
 
-
-# https://datatracker.ietf.org/doc/html/draft-bhutton-json-schema-00#section-4.2.1
+# json data types: https://datatracker.ietf.org/doc/html/draft-bhutton-json-schema-00#section-4.2.1
