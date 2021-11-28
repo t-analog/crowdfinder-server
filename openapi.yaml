@@ -18,6 +18,8 @@ components:
     Activity:
       type: object
       properties:
+        activity_id:
+          type: string
         activity_name:
           type: string
         activity_description:
@@ -37,11 +39,11 @@ components:
     User:
       type: object
       properties:
-        user_name:
-          type: string
-        user_password:
+        user_id:
           type: string
         user_email:
+          type: string
+        user_password:
           type: string
 
   parameters:
