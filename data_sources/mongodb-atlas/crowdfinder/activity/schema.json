@@ -1,0 +1,42 @@
+{
+  "title": "Activity",
+  "bsonType": "object",
+  "properties": {
+    "_id": {
+      "bsonType": "objectId"
+    },
+    "name": {
+      "bsonType": "string"
+    },
+    "description": {
+      "bsonType": "string"
+    },
+    "category": {
+      "bsonType": "array",
+      "items": "string",
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "location": {
+      "bsonType": "object",
+      "properties": {
+        "latitude": {
+          "bsonType": "double"
+        },
+        "longitude": {
+          "bsonType": "double"
+        }
+      },
+      "required": [
+        "latitude",
+        "longitude"
+      ]
+    }
+  },
+  "required": [
+    "_id",
+    "name",
+    "category",
+    "location"
+  ]
+}
