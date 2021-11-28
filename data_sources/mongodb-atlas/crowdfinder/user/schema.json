@@ -1,0 +1,12 @@
+{
+  "title": "User",
+  "bsonType": "object",
+  "properties": {
+    "_id": {
+      "bsonType": "objectId"
+    },
+    "email": {
+      "bsonType": "string"
+    }
+  }
+}
