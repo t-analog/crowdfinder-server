@@ -1,0 +1,7 @@
+{
+    "config_version": 20210101,
+    "app_id": "crowdfinder-byjrt",
+    "name": "CrowdFinder",
+    "location": "SG",
+    "deployment_model": "GLOBAL"
+}
