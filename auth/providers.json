@@ -1,7 +1,11 @@
 {
-    "api-key": {
-        "disabled": true,
-        "name": "api-key",
-        "type": "api-key"
-    }
+  "local-userpass": {
+    "name": "local-userpass",
+    "type": "local-userpass",
+    "config": {
+      "autoConfirm": true,
+      "runConfirmationFunction": false
+    },
+    "disabled": false
+  }
 }
