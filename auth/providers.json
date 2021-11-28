@@ -4,7 +4,9 @@
     "type": "local-userpass",
     "config": {
       "autoConfirm": true,
-      "runConfirmationFunction": false
+      "resetFunctionName": "resetFunc",
+      "runConfirmationFunction": false,
+      "runResetFunction": true
     },
     "disabled": false
   }
