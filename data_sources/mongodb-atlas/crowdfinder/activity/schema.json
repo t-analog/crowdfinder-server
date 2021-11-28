@@ -11,9 +11,11 @@
     "description": {
       "bsonType": "string"
     },
-    "category": {
+    "categories": {
       "bsonType": "array",
-      "items": "string",
+      "items": {
+        "bsonType": "string"
+      },
       "minItems": 1,
       "uniqueItems": true
     },
