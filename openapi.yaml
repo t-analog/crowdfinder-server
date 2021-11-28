@@ -1,0 +1,141 @@
+openapi: 3.1.0
+info:
+  title: CrowdFinder API
+  version: 1.0.0
+
+servers:
+  - url: http://localhost:3000/v1
+
+
+components:
+  # basic authentication
+  securitySchemes:
+    BasicAuth:
+      type: http
+      scheme: basic
+
+  schemas:
+    Activity:
+      type: object
+      properties:
+        activity_id:
+          type: string
+        activity_name:
+          type: string
+        activity_description:
+          type: string
+        activity_category:
+          type: array
+          items:
+            type: string
+        activity_location:
+          type: object
+          properties:
+            latitude:
+              type: number
+            longitude:
+              type: number
+
+    User:
+      type: object
+      properties:
+        user_id:
+          type: string
+        user_email:
+          type: string
+        user_password:
+          type: string
+
+  parameters:
+    PageLimit:
+      name: limit
+      in: query
+      description: Limits the number of activities returned
+      schema:
+        type: integer
+
+    PageOffset:
+      name: offset
+      in: query
+      description: Specifies the page number of the activities to be displayed
+      schema:
+        type: integer
+
+  responses:
+    400Error:
+      description: Invalid request
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+
+security:
+  - BasicAuth: []
+
+# path items
+paths:
+  /activity:
+    get:
+      description: Returns a list of activities
+      # query parameters
+      parameters:
+        - $ref: '#/components/parameters/PageLimit'
+        - $ref: '#/components/parameters/PageOffset'
+
+      # responses
+      responses:
+        '200':
+          description: Successfully returned a list of activities
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Activity'
+
+        '400':
+          $ref: '#/components/responses/400Error'
+
+    # request body
+    post:
+      description: Enables user create a new activity
+      requestBody:
+        description: Contains the new activity data sent by user
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Activity'
+
+      responses:
+        '200':
+          description: Successfully created new activity
+
+        '400':
+          $ref: '#/components/responses/400Error'
+
+  /activites/{id}:
+    get:
+      description: Get information of an activity from its MongoDB object id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+
+      responses:
+        '200':
+          description: Successfully returned an activity
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Activity'
+
+        '400':
+          $ref: '#/components/responses/400Error'
+
+# json data types: https://datatracker.ietf.org/doc/html/draft-bhutton-json-schema-00#section-4.2.1
