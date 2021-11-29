@@ -1,1 +1,12 @@
-[]
+[
+  {
+    "name": "resetFunc",
+    "private": false,
+    "can_evaluate": {}
+  },
+  {
+    "name": "findOneActivity",
+    "private": false,
+    "can_evaluate": {}
+  }
+]
