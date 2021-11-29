@@ -38,7 +38,7 @@
   "required": [
     "_id",
     "name",
-    "category",
+    "categories",
     "location"
   ]
 }
